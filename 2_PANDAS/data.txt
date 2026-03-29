@@ -1,0 +1,59 @@
+Pandas offers a rich set of functions for data manipulation, analysis, and transformation. Here’s a quick tour of some commonly used ones, grouped by purpose:
+📥 Reading Data
+- pd.read_csv("file.csv") – Load data from a CSV file.
+- pd.read_excel("file.xlsx") – Load data from an Excel file.
+- pd.read_sql(query, connection) – Load data from a SQL database.
+📊 DataFrame Creation & Inspection
+- pd.DataFrame(data) – Create a DataFrame.
+- df.head() / df.tail() – View the first or last few rows.
+- df.info() – Summary of the DataFrame.
+- df.describe() – Statistical summary.
+🔍 Selection & Filtering
+- df["column"] or df.column – Access a column.
+- df.loc[row_index, column_name] – Label-based selection.
+- df.iloc[row_index, column_index] – Position-based selection.
+- df[df["column"] > value] – Conditional filtering.
+🔄 Data Cleaning & Transformation
+- df.dropna() / df.fillna(value) – Handle missing values.
+- df.rename(columns={"old": "new"}) – Rename columns.
+- df.astype("int") – Change data types.
+- df.apply(func) – Apply a function to rows/columns.
+🔗 Merging & Joining
+- pd.concat([df1, df2]) – Concatenate DataFrames.
+- pd.merge(df1, df2, on="key") – Merge DataFrames on a key.
+📈 Aggregation & Grouping
+- df.groupby("column").mean() – Group and aggregate.
+- df.pivot_table(values, index, columns) – Create pivot tables.
+📅 Date & Time
+- pd.to_datetime(df["date_column"]) – Convert to datetime.
+- df["date"].dt.year – Extract year from datetime.
+
+
+🧹 Common Data Cleaning Tasks in Pandas
+1. Handle Missing Values
+df.isnull().sum()           # Count missing values
+df.dropna()                 # Drop rows with missing values
+df.fillna(value)            # Fill missing values with a specific value
+
+2. Remove Duplicates
+df.duplicated()             # Identify duplicates
+df.drop_duplicates()        # Remove duplicate rows
+
+3. Fix Data Types
+df['col'] = df['col'].astype('int')         # Convert column to integer
+df['date'] = pd.to_datetime(df['date'])     # Convert to datetime
+
+
+4. Clean Column Names
+df.columns = df.columns.str.strip().str.lower().str.replace(' ', '_')
+
+5. Filter Outliers
+df[df['col'] < df['col'].quantile(0.95)]    # Keep values below 95th percentile
+
+6. Standardize Text
+df['col'] = df['col'].str.lower().str.strip()
+
+
+7. Rename or Drop Columns
+df.rename(columns={'old': 'new'}, inplace=True)
+df.drop(['unwanted_col'], axis=1, inplace=True)

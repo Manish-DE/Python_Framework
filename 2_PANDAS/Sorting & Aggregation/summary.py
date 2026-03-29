@@ -1,0 +1,20 @@
+import pandas as pd
+from dataset import df
+
+print(f"Average Salary: {df['Salary'].mean()}") 
+print(f"Total Salary: {df['Salary'].sum()}")
+print(f"Minimum Salary: {df['Salary'].min()}")  
+print(f"Maximum Salary: {df['Salary'].max()}")
+print(f"Median Salary: {df['Salary'].median()}")
+print(f"Standard Deviation of Salary: {df['Salary'].std()}")
+print(f"Salary Variance: {df['Salary'].var()}")
+print(f"Salary Count: {df['Salary'].count()}")
+print(f"Salary Quantiles: {df['Salary'].quantile([0.25, 0.5, 0.75])}")
+print(f"Salary Description:\n{df['Salary'].describe()}")
+print(f"Salary Grouped by Age:\n{df.groupby('Age')['Salary'].mean()}")
+print(f"Salary Grouped by Age and Name:\n{df.groupby(['Age', 'Name'])['Salary'].mean()}")
+print(f"Salary Grouped by Age and Name with Size:\n{df.groupby(['Age', 'Name']).size()}")
+print(f"Salary Grouped by Age and Name with Aggregation:\n{df.groupby(['Age', 'Name']).agg({'Salary': ['mean', 'sum', 'count']})}")
+print(f"Salary Grouped by Age and Name with Multiple Aggregations:\n{df.groupby(['Age', 'Name']).agg({'Salary': ['mean', 'sum', 'count'], 'Age': ['min', 'max']})}")
+print(f"Salary Grouped by Age and Name with Custom Aggregation:\n{df.groupby(['Age', 'Name']).agg({'Salary': lambda x: x.mean() + 1000, 'Age': 'max'})}")
+print(f"Salary Grouped by Age and Name with Custom Aggregation Function:\n{df.groupby(['Age', 'Name']).agg({'Salary': lambda x: x.mean() + 1000, 'Age': lambda x: x.max()})}")
